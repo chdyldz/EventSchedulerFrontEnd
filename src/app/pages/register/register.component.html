@@ -1,0 +1,71 @@
+<div class="container mt-5">
+  <div class="card ms-auto me-auto p-3 shadow-lg custom-card">
+
+
+    <table class="form-group">
+
+      <tr class="form-group">
+        <td>
+          <form #f="ngForm" (ngSubmit)="save()">
+            <div class="alert alert-danger" *ngIf="errorMessage">
+              {{errorMessage}}
+            </div>
+
+            <div class="form-group">
+              <label for="name">Event Name</label>
+              <input type="text" id="name" name="name" [(ngModel)]="event.name" #name="ngModel" class="form-control"
+                required>
+              <div class="alert-danger" *ngIf="!username.valid">
+                event name is required.
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="duration">duration</label>
+              <input type="number" id="duration" name="duration" [(ngModel)]="event.duration" #username="ngModel"
+                class="form-control" required>
+              <div class="alert-danger" *ngIf="!username.valid">
+                duration is required.
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-danger w-100 mt-3">
+              add
+            </button>
+          </form>
+
+        </td>
+
+
+
+        <td class="form-group" style="margin-left:10px;">
+          <div class="row" style="margin-left:300px;">
+            <label class="form-group">Events</label>
+            <table>
+              <tr class="form-group" *ngFor="let event of events;">
+                <td>{{event.name}}</td>
+                <td>{{event.duration}}</td>
+              </tr>
+            </table>
+          </div>
+        </td>
+
+      </tr>
+      <tr>
+         
+          <div class="row" style="margin-left:10px;">
+            <table>
+              <tr class="form-group" *ngFor="let event of scheduledEvents;">
+                <td>{{event.eventTime}}</td>
+                <td>{{event.name}}</td>
+                <td>{{event.duration}}</td>
+              </tr>
+            </table>
+
+          </div>
+      </tr>
+
+    </table>
+
+  </div>
+</div>
