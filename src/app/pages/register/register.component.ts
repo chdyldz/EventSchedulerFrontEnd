@@ -35,15 +35,24 @@ export class RegisterComponent implements OnInit {
     console.log(this.scheduledEvents);
 
   }
+  removeAll(){
+    this.eventService.removeAll().subscribe(data =>{
+      window.location.reload();
+    });
+
+  }
 
   scheduleEvents(){
-    this.eventService.getScheduleList().subscribe(data=>{
-      this.scheduleEvents=data; 
+    this.eventService.getScheduleList().subscribe(data =>{
+      data.forEach((element:Event) => {
+        this.scheduledEvents.push(element);
+      });
     });
 
   }
   save() {
     this.eventService.saveEvent(this.event).subscribe(data => {
+      window.location.reload();
     
     }, err => {
       if (err?.status === 409) {

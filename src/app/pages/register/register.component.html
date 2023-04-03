@@ -2,16 +2,16 @@
   <div class="card ms-auto me-auto p-3 shadow-lg custom-card">
 
 
-    <table class="form-group">
+    <table >
 
-      <tr class="form-group">
+      <tr >
         <td>
-          <form #f="ngForm" (ngSubmit)="save()">
+     
             <div class="alert alert-danger" *ngIf="errorMessage">
               {{errorMessage}}
             </div>
 
-            <div class="form-group">
+            <div >
               <label for="name">Event Name</label>
               <input type="text" id="name" name="name" [(ngModel)]="event.name" #name="ngModel" class="form-control"
                 required>
@@ -20,7 +20,7 @@
               </div>
             </div>
 
-            <div class="form-group">
+            <div >
               <label for="duration">duration</label>
               <input type="number" id="duration" name="duration" [(ngModel)]="event.duration" #username="ngModel"
                 class="form-control" required>
@@ -29,20 +29,23 @@
               </div>
             </div>
 
-            <button type="submit" class="btn btn-danger w-100 mt-3">
-              add
+            <button type="submit" (click)="save()" class="btn btn-danger w-100 mt-3">
+              Add
             </button>
-          </form>
+            <button  type="submit" (click)="removeAll()" class="btn btn-danger w-100 mt-3" id="Remove All">
+              Remove All
+            </button>
+   
 
         </td>
 
 
 
-        <td class="form-group" style="margin-left:10px;">
+        <td  style="margin-left:10px;">
           <div class="row" style="margin-left:300px;">
-            <label class="form-group">Events</label>
+            <label  class="w-100 mt-3" style="text-align: center; background-color: brown;">All Events</label>
             <table>
-              <tr class="form-group" *ngFor="let event of events;">
+              <tr  *ngFor="let event of events;">
                 <td>{{event.name}}</td>
                 <td>{{event.duration}}</td>
               </tr>
@@ -52,10 +55,12 @@
 
       </tr>
       <tr>
-         
+
+        <td>
           <div class="row" style="margin-left:10px;">
+            <button type="submit" class="btn btn-danger w-100 mt-3"  (click)="scheduleEvents()">Schedule</button>
             <table>
-              <tr class="form-group" *ngFor="let event of scheduledEvents;">
+              <tr  *ngFor="let event of scheduledEvents;">
                 <td>{{event.eventTime}}</td>
                 <td>{{event.name}}</td>
                 <td>{{event.duration}}</td>
@@ -63,6 +68,9 @@
             </table>
 
           </div>
+        </td>
+         
+
       </tr>
 
     </table>

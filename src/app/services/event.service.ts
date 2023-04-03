@@ -22,6 +22,10 @@ export class EventService {
     return this.http.get(API_URL+'/getSchedule');
   }
 
+  removeAll(): Observable<any> {
+    return this.http.get(API_URL+'/removeAll');
+  }
+
   saveEvent(event:Event): Observable<Event> {
     return this.http.post<Event>(API_URL+'/save',event);
   }
